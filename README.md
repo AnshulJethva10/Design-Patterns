@@ -132,3 +132,90 @@ public class Client {
 The Abstract Factory pattern helps create families of related objects without specifying their concrete classes. In this example, the pattern is used to create different career paths for B.Tech and M.Tech students in various branches. By using abstract factories and concrete products, the code remains flexible and easy to extend with new educational paths without modifying existing code.
 
 Link to the Complete Code
+
+
+## Adapter Design Pattern
+### Description
+The Adapter pattern allows incompatible interfaces to work together. It acts as a bridge between two incompatible interfaces by converting the interface of a class into another interface that a client expects.
+
+### Problem
+Sometimes, there are classes with incompatible interfaces, and you want to use these classes together. The Adapter Design Pattern allows you to create an intermediary that adapts the interface of one class to be compatible with another.
+
+### Solution
+1. Define the Target Interface:
+    - This is the interface that the client expects to work with. In this example, PaymentGateway is the target interface.
+```
+interface PaymentGateway {
+    public void pay();
+}
+```
+
+2. Implement Concrete Classes:
+    - These classes implement the target interface. Here, Paytm and GPay are concrete implementations of the PaymentGateway interface.
+```
+class Paytm implements PaymentGateway {
+    public void pay() {
+        System.out.println("Current Payment Gateway is PayTM");
+    }
+}
+
+class GPay implements PaymentGateway {
+    public void pay() {
+        System.out.println("Current Payment Gateway is GPay");
+    }
+}
+```
+3. Create the Adapter Class:
+    - The adapter class implements the target interface and holds an instance of the class it adapts. Here, PaymentGatewayAdapter adapts the Paytm class to the PaymentGateway interface.
+```
+class PaymentGatewayAdapter implements PaymentGateway {
+    private Paytm paytm;
+
+    public PaymentGatewayAdapter(Paytm paytm) {
+        this.paytm = paytm;
+    }
+
+    @Override
+    public void pay() {
+        paytm.pay();
+        System.out.println("Changing the Payment Gateway from PayTM to GPay...");
+        // Additional logic to adapt Paytm to GPay could go here
+    }
+}
+```
+
+4. Client Code:
+    - The client code demonstrates how to use the adapter pattern to switch between payment gateways. It allows the user to choose between Paytm and GPay. If GPay is chosen, the adapter is used to adapt the Paytm interface to the GPay interface.
+```
+public class Client {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Paytm paytm = new Paytm();
+        System.out.println("Select A Payment Gateway: ");
+        System.out.println("a) PayTM \nb) GPay");
+        String choice = sc.nextLine();
+
+        PaymentGateway paymentGateway;
+        if (choice.equals("a")) {
+            paymentGateway = paytm;
+        } else if (choice.equals("b")) {
+            paymentGateway = new PaymentGatewayAdapter(paytm);
+        } else {
+            System.out.println("Invalid choice");
+            sc.close();
+            return;
+        }
+
+        paymentGateway.pay();
+        sc.close();
+    }
+}
+```
+
+### Summary
+The Adapter Design Pattern is a structural pattern that enables classes with incompatible interfaces to work together. In this example, we demonstrated how to use an adapter to switch between different payment gateways (Paytm and GPay). The adapter allows Paytm to be used where a GPay interface is expected, illustrating how the pattern helps integrate different interfaces seamlessly.
+
+Link to the Complete Code
+
+
+
