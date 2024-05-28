@@ -1,7 +1,7 @@
 # Design Patterns in Java
 Welcome to the Design Patterns repository. This repository contains implementations of various design patterns in Java. Each pattern is implemented with clarity to help beginners understand the concepts easily. Below is a list of the design patterns included in this repository along with their descriptions and usage.
-1. [Abstract Factory](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#adapter) 
-2. Adaptor
+1. [Abstract Factory](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#abstract-factory) 
+2. [Adaptor](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#adapter)
 3. Builder
 4. Composite
 5. Decorator
