@@ -130,9 +130,7 @@ public class Client {
 ```
 
 ## UML Diagram
-<div align="center">
-  <img height="200" src="https://drive.google.com/file/d/1NWJHk004Q4rnjoHdGtPGsoaWEkbyAKFp/view?usp=drive_link"  />
-</div>
+![Abstract-Factory UML](https://lh3.googleusercontent.com/u/0/drive-viewer/AKGpihbAgueAFphwQkmMKhi0WpKrVJ3e66ql2RgNecuAQyRay2V8O3xLIm7boVzSuhh2PRCiZefTnEPmjZNjIfoT74qCwmD88vNOOxg=w1920-h919-rw-v1)
 
 ## Summary
 The Abstract Factory pattern helps create families of related objects without specifying their concrete classes. In this example, the pattern is used to create different career paths for B.Tech and M.Tech students in various branches. By using abstract factories and concrete products, the code remains flexible and easy to extend with new educational paths without modifying existing code.
@@ -217,6 +215,8 @@ public class Client {
     }
 }
 ```
+## UML Diagram
+![Abstract-Factory UML](https://lh3.googleusercontent.com/u/0/drive-viewer/AKGpihag2wuDNMOTOwGJws5wy09X8JHmYX6zyDASserHU4AsqU5bo0QuxOcfeSMOscE5ebvBSsZflPE4fhR9A3F_cYyZKCfpqNtH57E=w1920-h919-rw-v1)
 
 ## Summary
 The Adapter Design Pattern is a structural pattern that enables classes with incompatible interfaces to work together. In this example, we demonstrated how to use an adapter to switch between different payment gateways (Paytm and GPay). The adapter allows Paytm to be used where a GPay interface is expected, illustrating how the pattern helps integrate different interfaces seamlessly.
