@@ -16,7 +16,8 @@ Welcome to the Design Patterns repository. This repository contains implementati
 14. Singleton
 15. State
 
-## Abstract Factory Design Pattern
+
+# Abstract Factory
 ### Description 
 The Abstract Factory pattern provides an interface for creating families of related or dependent objects without specifying their concrete classes. This pattern is particularly useful when you need to create objects that share a common theme or family.
 
@@ -134,7 +135,7 @@ The Abstract Factory pattern helps create families of related objects without sp
 Link to the Complete Code
 
 
-## Adapter Design Pattern
+# Adapter
 ### Description
 The Adapter pattern allows incompatible interfaces to work together. It acts as a bridge between two incompatible interfaces by converting the interface of a class into another interface that a client expects.
 
