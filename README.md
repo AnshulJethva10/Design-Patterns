@@ -129,6 +129,11 @@ public class Client {
 }
 ```
 
+## UML Diagram
+<div align="center">
+  <img height="200" src="https://drive.google.com/file/d/1NWJHk004Q4rnjoHdGtPGsoaWEkbyAKFp/view?usp=drive_link"  />
+</div>
+
 ## Summary
 The Abstract Factory pattern helps create families of related objects without specifying their concrete classes. In this example, the pattern is used to create different career paths for B.Tech and M.Tech students in various branches. By using abstract factories and concrete products, the code remains flexible and easy to extend with new educational paths without modifying existing code.
 
