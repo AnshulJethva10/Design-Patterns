@@ -26,7 +26,8 @@ In some scenarios, you need to create a set of related objects. For instance, a 
 
 ## Solution
 1. Declare Interfaces for Products:
-    - Define an interface for the type of product you want to create. In this case, `Career` is the product interface.
+
+- Define an interface for the type of product you want to create. In this case, `Career` is the product interface.
 ```
 interface Career {
     void degree();
@@ -135,7 +136,7 @@ public class Client {
 ## Summary
 The Abstract Factory pattern helps create families of related objects without specifying their concrete classes. In this example, the pattern is used to create different career paths for B.Tech and M.Tech students in various branches. By using abstract factories and concrete products, the code remains flexible and easy to extend with new educational paths without modifying existing code.
 
-Link to the Complete Code
+[Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/AbstractFactory.java)
 
 
 # Adapter
@@ -221,7 +222,7 @@ public class Client {
 ## Summary
 The Adapter Design Pattern is a structural pattern that enables classes with incompatible interfaces to work together. In this example, we demonstrated how to use an adapter to switch between different payment gateways (Paytm and GPay). The adapter allows Paytm to be used where a GPay interface is expected, illustrating how the pattern helps integrate different interfaces seamlessly.
 
-Link to the Complete Code
+[Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Adapter.java)
 
 
 
