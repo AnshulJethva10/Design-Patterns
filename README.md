@@ -35,7 +35,7 @@ interface Career {
 ```
 
 2. Concrete Product Classes: 
-    - Implement the product interface in concrete classes that represent specific products. Here, we have various classes implementing the Career interface, such as CS_Btech, Mec_Btech, CS_Mtech, etc.
+    - Implement the product interface in concrete classes that represent specific products. Here, we have various classes implementing the `Career` interface, such as `CS_Btech`, `Mec_Btech`, `CS_Mtech`, etc.
 ```
 class CS_Btech implements Career {
     public void degree() {
@@ -55,7 +55,7 @@ class Mec_Btech implements Career {
 ```
 
 3. Abstract Factory Interface:
-    - Define an abstract class or interface that declares creation methods for each type of product. Here, Factory is the abstract class with a method FactoryPass.
+    - Define an abstract class or interface that declares creation methods for each type of product. Here, `Factory` is the abstract class with a method `FactoryPass`.
 ```
 abstract class Factory {
     abstract void FactoryPass(int x);
@@ -63,7 +63,7 @@ abstract class Factory {
 ```
 
 4. Concrete Factories:
-    - Implement the abstract factory class in concrete factory classes that create specific products. Here, Btech_Factory and Mtech_Factory are concrete factory classes.
+    - Implement the abstract factory class in concrete factory classes that create specific products. Here, `Btech_Factory` and `Mtech_Factory` are concrete factory classes.
 ```
 class Btech_Factory extends Factory {
     void FactoryPass(int x) {
@@ -148,7 +148,7 @@ Sometimes, there are classes with incompatible interfaces, and you want to use t
 
 ## Solution
 1. Define the Target Interface:
-    - This is the interface that the client expects to work with. In this example, PaymentGateway is the target interface.
+    - This is the interface that the client expects to work with. In this example, `PaymentGateway` is the target interface.
 ```
 interface PaymentGateway {
     public void pay();
@@ -156,7 +156,7 @@ interface PaymentGateway {
 ```
 
 2. Implement Concrete Classes:
-    - These classes implement the target interface. Here, Paytm and GPay are concrete implementations of the PaymentGateway interface.
+    - These classes implement the target interface. Here, `Paytm` and `GPay` are concrete implementations of the `PaymentGateway` interface.
 ```
 class Paytm implements PaymentGateway {
     public void pay() {
@@ -171,7 +171,7 @@ class GPay implements PaymentGateway {
 }
 ```
 3. Create the Adapter Class:
-    - The adapter class implements the target interface and holds an instance of the class it adapts. Here, PaymentGatewayAdapter adapts the Paytm class to the PaymentGateway interface.
+    - The adapter class implements the target interface and holds an instance of the class it adapts. Here, `PaymentGatewayAdapter` adapts the `Paytm` class to the `PaymentGateway` interface.
 ```
 class PaymentGatewayAdapter implements PaymentGateway {
     private Paytm paytm;
@@ -190,7 +190,7 @@ class PaymentGatewayAdapter implements PaymentGateway {
 ```
 
 4. Client Code:
-    - The client code demonstrates how to use the adapter pattern to switch between payment gateways. It allows the user to choose between Paytm and GPay. If GPay is chosen, the adapter is used to adapt the Paytm interface to the GPay interface.
+    - The client code demonstrates how to use the adapter pattern to switch between payment gateways. It allows the user to choose between `Paytm` and `GPay`. If `GPay` is chosen, the adapter is used to adapt the `Paytm` interface to the `GPay` interface.
 ```
 public class Client {
     public static void main(String[] args) {
@@ -220,7 +220,7 @@ public class Client {
 ![Abstract-Factory UML](https://lh3.googleusercontent.com/u/0/drive-viewer/AKGpihag2wuDNMOTOwGJws5wy09X8JHmYX6zyDASserHU4AsqU5bo0QuxOcfeSMOscE5ebvBSsZflPE4fhR9A3F_cYyZKCfpqNtH57E=w1920-h919-rw-v1)
 
 ## Summary
-The Adapter Design Pattern is a structural pattern that enables classes with incompatible interfaces to work together. In this example, we demonstrated how to use an adapter to switch between different payment gateways (Paytm and GPay). The adapter allows Paytm to be used where a GPay interface is expected, illustrating how the pattern helps integrate different interfaces seamlessly.
+The Adapter Design Pattern is a structural pattern that enables classes with incompatible interfaces to work together. In this example, we demonstrated how to use an adapter to switch between different payment gateways (`Paytm` and `GPay`). The adapter allows `Paytm` to be used where a `GPay` interface is expected, illustrating how the pattern helps integrate different interfaces seamlessly.
 
 [Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Adapter.java)
 
