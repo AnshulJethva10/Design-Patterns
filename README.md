@@ -636,4 +636,4 @@ class client {
 ## Summary
 The Decorator Design Pattern is a structural pattern that allows behavior to be added to individual objects dynamically. In this example, we demonstrated how to use the decorator pattern to add decoration functionality to Truck and Car objects without modifying their class definitions. The pattern provides a flexible alternative to subclassing for extending functionality.
 
-[Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Builder.java)
+[Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Decorator.java)
