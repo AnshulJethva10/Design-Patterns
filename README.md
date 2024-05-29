@@ -2,7 +2,7 @@
 Welcome to the Design Patterns repository. This repository contains implementations of various design patterns in Java. Each pattern is implemented with clarity to help beginners understand the concepts easily. Below is a list of the design patterns included in this repository along with their descriptions and usage.
 1. [Abstract Factory](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#abstract-factory) 
 2. [Adaptor](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#adapter)
-3. Builder
+3. [Builder](https://github.com/AnshulJethva10/Design-Patterns/tree/main#builder)
 4. Composite
 5. Decorator
 6. Facade
@@ -234,7 +234,7 @@ In scenarios where an object needs to be constructed through a series of steps, 
 
 ## Solution
 1. Define the Product:
-    - The product is the complex object that needs to be constructed. Here, kit represents the IoT kit with various components.
+    - The product is the complex object that needs to be constructed. Here, `kit` represents the IoT kit with various components.
 
 ```
 class kit {
@@ -261,7 +261,7 @@ class kit {
 ```
 
 2. Define the Builder Interface:
-    - The builder interface specifies methods for creating the parts of the product. In this example, IoT_Kit_Builder provides methods to build different types of kits.
+    - The builder interface specifies methods for creating the parts of the product. In this example, `IoT_Kit_Builder` provides methods to build different types of kits.
 
 ```
 class IoT_Kit_Builder {
@@ -276,7 +276,7 @@ class IoT_Kit_Builder {
 ```
 
 3. Concrete Builder Classes:
-    - Concrete builder classes implement the builder interface and provide specific implementations for building parts of the product. Here, the methods NodeMCU_Kit_Builder and Ardunio_Kit_Builder build IoT kits with different components.
+    - Concrete builder classes implement the builder interface and provide specific implementations for building parts of the product. Here, the methods `NodeMCU_Kit_Builder` and `Ardunio_Kit_Builder` build IoT kits with different components.
 
 ```
 public kit NodeMCU_Kit_Builder() {
@@ -293,7 +293,7 @@ public kit Ardunio_Kit_Builder() {
 ```
 
 4. Director:
-    - The director is responsible for managing the correct sequence of building steps. In this example, Customer class acts as the director, orchestrating the construction process.
+    - The director is responsible for managing the correct sequence of building steps. In this example, `Customer` class acts as the director, orchestrating the construction process.
 
 ```public class Customer {
     public static void main(String[] args) {
@@ -316,7 +316,7 @@ public kit Ardunio_Kit_Builder() {
 ## Explanation of the Code
 
 1. Product and Components:
-    - The kit class represents the IoT kit that contains various devices (Device). These devices can be sensors, modules, wires, and other components like LEDs, breadboards, buttons, and resistors.
+    - The `kit` class represents the IoT kit that contains various devices (`Device`). These devices can be sensors, modules, wires, and other components like LEDs, breadboards, buttons, and resistors.
 
 ```
 abstract class sensors implements Device { /* ... */ }
@@ -343,7 +343,7 @@ class resistor extends Other { /* ... */ }
 ```
 
 2. Builder Implementation:
-    - The IoT_Kit_Builder class contains methods for building different types of IoT kits. It asks the user to select components and adds them to the kit.
+    - The `IoT_Kit_Builder` class contains methods for building different types of IoT kits. It asks the user to select components and adds them to the kit.
 
 ```
 class IoT_Kit_Builder {
@@ -362,7 +362,7 @@ class IoT_Kit_Builder {
 ```
 
 3. Director:
-    - The Customer class acts as the director, managing the construction process based on user input.
+    - The `Customer` class acts as the director, managing the construction process based on user input.
 
 ```public class Customer {
     public static void main(String[] args) {
@@ -388,4 +388,4 @@ class IoT_Kit_Builder {
 ## Summary
 The Builder Design Pattern is a creational pattern that helps in constructing complex objects step by step. In this example, we demonstrated how to use the builder pattern to create customized IoT kits with different components. The pattern ensures that the construction process is flexible and allows for different representations of the object.
 
-[Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Adapter.java)
+[Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Builder.java)
