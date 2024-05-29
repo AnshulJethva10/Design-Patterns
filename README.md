@@ -3,7 +3,7 @@ Welcome to the Design Patterns repository. This repository contains implementati
 1. [Abstract Factory](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#abstract-factory) 
 2. [Adaptor](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#adapter)
 3. [Builder](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#builder)
-4. Composite
+4. [Composite](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#composite)
 5. [Decorator](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#decorator)
 6. Facade
 7. Factory
@@ -648,7 +648,7 @@ public class client {
 ## Summary
 This project provides a structured approach to managing a collection of electronic components in a DIY electronics kit. The use of interfaces and abstract classes allows for flexibility and easy extension of new device types. The Kit class serves as a container for the devices and provides methods to manage them effectively. By running the client code, users can create a kit, add various devices, display the devices, and calculate the total cost.
 
-[Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Decorator.java)
+[Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Composite.java)
 
 
 # Decorator
