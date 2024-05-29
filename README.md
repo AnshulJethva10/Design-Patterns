@@ -2,9 +2,9 @@
 Welcome to the Design Patterns repository. This repository contains implementations of various design patterns in Java. Each pattern is implemented with clarity to help beginners understand the concepts easily. Below is a list of the design patterns included in this repository along with their descriptions and usage.
 1. [Abstract Factory](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#abstract-factory) 
 2. [Adaptor](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#adapter)
-3. [Builder](https://github.com/AnshulJethva10/Design-Patterns/tree/main#builder)
+3. [Builder](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#builder)
 4. Composite
-5. Decorator
+5. [Decorator](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#decorator)
 6. Facade
 7. Factory
 8. Flyweight
@@ -387,5 +387,253 @@ class IoT_Kit_Builder {
 
 ## Summary
 The Builder Design Pattern is a creational pattern that helps in constructing complex objects step by step. In this example, we demonstrated how to use the builder pattern to create customized IoT kits with different components. The pattern ensures that the construction process is flexible and allows for different representations of the object.
+
+[Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Builder.java)
+
+# Decorator
+## Description
+The Decorator Design Pattern is used to extend the functionalities of objects in a flexible and reusable way. It allows behavior to be added to individual objects, either statically or dynamically, without affecting the behavior of other objects from the same class.
+
+## Problem
+Sometimes, we need to add functionalities to objects without altering their structure. The Decorator Design Pattern provides a way to attach additional responsibilities to an object dynamically. This pattern creates a decorator class which wraps the original class and provides additional functionality while keeping the class methods' signature intact.
+
+## Solution
+1. Define the Component Interface:
+    - The component interface defines the interface for objects that can have responsibilities added to them dynamically.
+
+```
+interface Toy {
+    public void material();
+    public void cost();
+}
+```
+
+2. Concrete Component Classes:
+    - These classes implement the Toy interface and represent objects to which additional functionalities can be added.
+
+```
+class Truck implements Toy {
+    int wheels, door, carriage_capacity;
+    String model;
+
+    public Truck(int wheels, int door, String model, int carriage_capacity) {
+        this.wheels = wheels;
+        this.door = door;
+        this.model = model;
+        this.carriage_capacity = carriage_capacity;
+    }
+
+    public void material() {
+        System.out.println("\nThis Truck is made out of wood");
+    }
+
+    public void cost() {
+        System.out.println("Price : 750/-");
+    }
+
+    public void capacity() {
+        System.out.println("This truck has " + carriage_capacity + " Liter carriage capacity");
+    }
+}
+
+class Car implements Toy {
+    int wheels, door;
+    String model;
+
+    public Car(int wheels, int door, String model) {
+        this.wheels = wheels;
+        this.door = door;
+        this.model = model;
+    }
+
+    public void material() {
+        System.out.println("\nThis Car is made out of Plastic");
+    }
+
+    public void cost() {
+        System.out.println("Price : 350/-");
+    }
+}
+```
+
+3. Decorator Interface:
+    - The decorator interface extends the Toy interface and provides a method for decoration.
+
+```
+interface ToyDecorator {
+    public void decoration();
+}
+```
+
+4. Concrete Decorator Classes:
+    - These classes implement the Toy and ToyDecorator interfaces and add additional functionalities to the toy objects.
+
+```
+class TruckDecorator implements Toy, ToyDecorator {
+    Truck toy;
+    String color;
+
+    public TruckDecorator(Truck toy, String color) {
+        this.toy = toy;
+        this.color = color;
+    }
+
+    public void material() {
+        System.out.println("\nThis Truck is made out of Wood");
+    }
+
+    public void cost() {
+        System.out.println("Price : 850/-");
+    }
+
+    public void capacity() {
+        System.out.println("This truck has " + getcarriage_capacity() + " Liter carriage capacity");
+    }
+
+    public void decoration() {
+        System.out.println("The truck is painted with " + color + " color");
+    }
+
+    public int getWheels() {
+        return toy.wheels;
+    }
+
+    public int getDoor() {
+        return toy.door;
+    }
+
+    public int getcarriage_capacity() {
+        return toy.carriage_capacity;
+    }
+
+    public String getModel() {
+        return toy.model;
+    }
+}
+
+class CarDecorator implements Toy, ToyDecorator {
+    Car toy;
+    String color;
+
+    public CarDecorator(Car toy, String color) {
+        this.toy = toy;
+        this.color = color;
+    }
+
+    public void material() {
+        System.out.println("\nThis Car is made out of Plastic");
+    }
+
+    public void cost() {
+        System.out.println("Price : 450/-");
+    }
+
+    public void decoration() {
+        System.out.println("The car is painted with " + color + " color");
+    }
+
+    public int getWheels() {
+        return toy.wheels;
+    }
+
+    public int getDoor() {
+        return toy.door;
+    }
+
+    public String getModel() {
+        return toy.model;
+    }
+}
+```
+
+5. Client Code:
+    - The client code demonstrates the creation of Truck and Car objects and their decoration using the decorator classes.
+
+```
+class client {
+    public static void main(String[] args) {
+        Truck t = new Truck(12, 2, "TATA", 250);
+        t.material();
+        t.cost();
+        t.capacity();
+
+        Car c = new Car(4, 4, "Honda");
+        c.material();
+        c.cost();
+
+        TruckDecorator t1 = new TruckDecorator(t, "red");
+        t1.material();
+        t1.cost();
+        t1.capacity();
+        t1.decoration();
+
+        CarDecorator c1 = new CarDecorator(c, "blue");
+        c1.material();
+        c1.cost();
+        c1.decoration();
+    }
+}
+```
+
+## Explanation of the Code
+1. Component Interface:
+    - The Toy interface defines the basic functionalities of a toy, such as material and cost.
+
+```interface Toy {
+    public void material();
+    public void cost();
+}
+```
+
+2. Concrete Components:
+    - Truck and Car classes implement the Toy interface and provide specific implementations for the material and cost methods. Additionally, the Truck class has a capacity method to display its carriage capacity.
+
+```class Truck implements Toy {
+    // Truck implementation
+}
+
+class Car implements Toy {
+    // Car implementation
+}
+```
+
+3. Decorator Interface:
+    - The ToyDecorator interface provides an additional method for decoration.
+
+```
+interface ToyDecorator {
+    public void decoration();
+}
+```
+
+4. Concrete Decorators:
+    - TruckDecorator and CarDecorator classes implement the Toy and ToyDecorator interfaces. They add additional functionality, such as decoration, to the original Truck and Car objects.
+
+```
+class TruckDecorator implements Toy, ToyDecorator {
+    // TruckDecorator implementation
+}
+
+class CarDecorator implements Toy, ToyDecorator {
+    // CarDecorator implementation
+}
+```
+
+5. Client Code:
+    - The client class demonstrates the creation of Truck and Car objects and their decoration using the decorator classes.
+
+```
+class client {
+    public static void main(String[] args) {
+        // Client code implementation
+    }
+}
+```
+
+## UML Diagram
+![Decorator UML](https://lh3.googleusercontent.com/u/0/drive-viewer/AKGpihYpxEvuvv9yHG5jYPOfCKMGN6_7ICDeQKydGaWsdY0eLgBtq6QW8znm259h2dbEX1uTg0hxTwO8sTCg2UaEvpdJyxxIynSLK8g=w1920-h919-rw-v1)
+
+## Summary
+The Decorator Design Pattern is a structural pattern that allows behavior to be added to individual objects dynamically. In this example, we demonstrated how to use the decorator pattern to add decoration functionality to Truck and Car objects without modifying their class definitions. The pattern provides a flexible alternative to subclassing for extending functionality.
 
 [Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Builder.java)
