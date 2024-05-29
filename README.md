@@ -225,4 +225,167 @@ The Adapter Design Pattern is a structural pattern that enables classes with inc
 [Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Adapter.java)
 
 
+# Builder
+## Description
+The Builder Design Pattern is used to construct complex objects step by step. It allows the creation of different representations of an object using the same construction process. This pattern is useful when the creation process of an object is complex and requires several steps.
 
+## Problem
+In scenarios where an object needs to be constructed through a series of steps, the Builder Design Pattern helps in separating the construction logic from the representation of the object. This separation allows the same construction process to create different representations of the object.
+
+## Solution
+1. Define the Product:
+    - The product is the complex object that needs to be constructed. Here, kit represents the IoT kit with various components.
+
+```
+class kit {
+    ArrayList<Device> items = new ArrayList<Device>();
+
+    void addDevice(Device itm) {
+        items.add(itm);
+    }
+
+    float getCost() {
+        int cost = 0;
+        for (Device itm : items) {
+            cost += itm.price();
+        }
+        return cost;
+    }
+
+    void showDevices() {
+        for (Device itm : items) {
+            System.out.println(itm.name());
+        }
+    }
+}
+```
+
+2. Define the Builder Interface:
+    - The builder interface specifies methods for creating the parts of the product. In this example, IoT_Kit_Builder provides methods to build different types of kits.
+
+```
+class IoT_Kit_Builder {
+    public kit NodeMCU_Kit_Builder() {
+        // Implementation for building NodeMCU kit
+    }
+
+    public kit Ardunio_Kit_Builder() {
+        // Implementation for building Arduino kit
+    }
+}
+```
+
+3. Concrete Builder Classes:
+    - Concrete builder classes implement the builder interface and provide specific implementations for building parts of the product. Here, the methods NodeMCU_Kit_Builder and Ardunio_Kit_Builder build IoT kits with different components.
+
+```
+public kit NodeMCU_Kit_Builder() {
+    kit k = new kit();
+    // Logic to add components to the NodeMCU kit
+    return k;
+}
+
+public kit Ardunio_Kit_Builder() {
+    kit k = new kit();
+    // Logic to add components to the Arduino kit
+    return k;
+}
+```
+
+4. Director:
+    - The director is responsible for managing the correct sequence of building steps. In this example, Customer class acts as the director, orchestrating the construction process.
+
+```public class Customer {
+    public static void main(String[] args) {
+        System.out.println("Hello! Welcome to the IoT Kit Builder");
+        System.out.println("Which type of kit do you want to build? :");
+        System.out.println("a) Arduino Kit\nb) NodeMCU Kit");
+        Scanner sc = new Scanner(System.in);
+        String x = sc.next();
+        IoT_Kit_Builder iot = new IoT_Kit_Builder();
+        if (x.equals("a")) {
+            iot.Ardunio_Kit_Builder();
+        } else if (x.equals("b")) {
+            iot.NodeMCU_Kit_Builder();
+        }
+        sc.close();
+    }
+}
+```
+
+## Explanation of the Code
+
+1. Product and Components:
+    - The kit class represents the IoT kit that contains various devices (Device). These devices can be sensors, modules, wires, and other components like LEDs, breadboards, buttons, and resistors.
+
+```
+abstract class sensors implements Device { /* ... */ }
+class temp_sensor extends sensors { /* ... */ }
+class ir_sensor extends sensors { /* ... */ }
+class laser_sensor extends sensors { /* ... */ }
+
+abstract class Modules implements Device { /* ... */ }
+class Uno extends Modules { /* ... */ }
+class Nano extends Modules { /* ... */ }
+class esp32 extends Modules { /* ... */ }
+class esp8266 extends Modules { /* ... */ }
+
+abstract class Wire implements Device { /* ... */ }
+class m2m extends Wire { /* ... */ }
+class f2m extends Wire { /* ... */ }
+class f2f extends Wire { /* ... */ }
+
+abstract class Other implements Device { /* ... */ }
+class led extends Other { /* ... */ }
+class bb extends Other { /* ... */ }
+class btn extends Other { /* ... */ }
+class resistor extends Other { /* ... */ }
+```
+
+2. Builder Implementation:
+    - The IoT_Kit_Builder class contains methods for building different types of IoT kits. It asks the user to select components and adds them to the kit.
+
+```
+class IoT_Kit_Builder {
+    public kit NodeMCU_Kit_Builder() {
+        kit k = new kit();
+        // Logic for NodeMCU kit
+        return k;
+    }
+
+    public kit Ardunio_Kit_Builder() {
+        kit k = new kit();
+        // Logic for Arduino kit
+        return k;
+    }
+}
+```
+
+3. Director:
+    - The Customer class acts as the director, managing the construction process based on user input.
+
+```public class Customer {
+    public static void main(String[] args) {
+        System.out.println("Hello! Welcome to the IoT Kit Builder");
+        System.out.println("Which type of kit do you want to build? :");
+        System.out.println("a) Arduino Kit\nb) NodeMCU Kit");
+        Scanner sc = new Scanner(System.in);
+        String x = sc.next();
+        IoT_Kit_Builder iot = new IoT_Kit_Builder();
+        if (x.equals("a")) {
+            iot.Ardunio_Kit_Builder();
+        } else if (x.equals("b")) {
+            iot.NodeMCU_Kit_Builder();
+        }
+        sc.close();
+    }
+}
+```
+
+## UML Diagram
+![Builder UML](https://lh3.googleusercontent.com/u/0/drive-viewer/AKGpihaBCZM6uMJ5kB6P2cEk7ylDVJ_rIOkK1ciYguVqXu8jJwpVGiURfV6vD6Q9ZZDka73Qf8FV-FaFIkAOg_toIgXADrGpo7dSxg=w1920-h919-rw-v1)
+
+## Summary
+The Builder Design Pattern is a creational pattern that helps in constructing complex objects step by step. In this example, we demonstrated how to use the builder pattern to create customized IoT kits with different components. The pattern ensures that the construction process is flexible and allows for different representations of the object.
+
+[Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Adapter.java)
