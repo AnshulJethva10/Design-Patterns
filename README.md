@@ -390,6 +390,267 @@ The Builder Design Pattern is a creational pattern that helps in constructing co
 
 [Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Builder.java)
 
+# Composite 
+## Description
+The DIY Electronics Kit Assembly project provides a Java implementation for creating and managing an electronics kit. This implementation defines various types of devices (sensors, modules, wires, and other components) that can be added to a kit, which can then calculate the total cost and display the list of devices.
+
+## Problem
+Managing a collection of various electronic components and calculating the total cost of the kit can be complex. This project aims to provide a flexible and reusable solution by defining a structured approach to add different devices to a kit, display the devices, and compute the total cost.
+
+## Solution
+1. Define the Device Interface:
+    - The Device interface defines the structure for all devices that can be added to the kit.
+
+```
+interface Device {
+    String name();
+    float price();
+}
+```
+
+2. Abstract Classes for Device Types:
+    - Abstract classes for different device types (sensors, modules, wires, others) that implement the Device interface.
+
+```
+abstract class sensors implements Device {
+    public abstract String name();
+    public abstract float price();
+}
+
+abstract class Modules implements Device {
+    public abstract String name();
+    public abstract float price();
+}
+
+abstract class Wire implements Device {
+    public abstract String name();
+    public abstract float price();
+}
+
+abstract class Other implements Device {
+    public abstract String name();
+    public abstract float price();
+}
+```
+
+3. Concrete Device Classes:
+    - Concrete classes for specific devices extending their respective abstract classes.
+```
+class temp_sensor extends sensors {
+    public String name() {
+        return "Temperature Sensor";
+    }
+
+    public float price() {
+        return 50f;
+    }
+}
+
+class ir_sensor extends sensors {
+    public String name() {
+        return "Infrared Sensor";
+    }
+
+    public float price() {
+        return 65f;
+    }
+}
+
+// Other device classes (laser_sensor, dht_sensor, Uno, Nano, esp32, esp8266, m2m, f2m, f2f, led, bb, btn, resistor) follow the same pattern
+```
+
+4. Kit Class:
+    - The Kit class manages a collection of devices, allowing to add devices, display them, and calculate the total cost.
+```class kit {
+    ArrayList<Device> items = new ArrayList<Device>();
+
+    void addDevice(Device itm) {
+        items.add(itm);
+    }
+
+    float getCost() {
+        float cost = 0;
+        for (Device itm : items) {
+            cost += itm.price();
+        }
+        return cost;
+    }
+
+    void showDevices() {
+        for (Device itm : items) {
+            System.out.println(itm.name());
+        }
+    }
+}
+```
+
+5. Client Code:
+    - The client code demonstrates creating various devices, adding them to a kit, displaying the devices, and calculating the total cost.
+```public class client {
+    public static void main(String[] args) {
+        kit new_kit = new kit();
+
+        Device esp8266 = new esp8266();
+        Device m2m = new m2m();
+        Device f2m = new f2m();
+        Device t_sensor = new temp_sensor();
+        Device ir_sensor = new ir_sensor();
+        Device dht_sensor = new dht_sensor();
+        Device breadboard = new bb();
+        Device btn = new btn();
+        Device led = new led();
+        Device resistor = new resistor();
+
+        new_kit.addDevice(esp8266);
+        new_kit.addDevice(m2m);
+        new_kit.addDevice(f2m);
+        new_kit.addDevice(t_sensor);
+        new_kit.addDevice(dht_sensor);
+        new_kit.addDevice(ir_sensor);
+        new_kit.addDevice(breadboard);
+        new_kit.addDevice(btn);
+        new_kit.addDevice(led);
+        new_kit.addDevice(resistor);
+
+        System.out.println("Devices in the Kit are: ");
+        new_kit.showDevices();
+
+        float cost = new_kit.getCost();
+        System.out.println("\nTotal cost of the kit is : " + cost);
+    }
+}
+```
+
+## Explanation of the Code
+1. Device Interface:
+    - The Device interface defines the basic functionalities of a device, such as name and price.
+```
+interface Device {
+    String name();
+    float price();
+}
+```
+
+2. Abstract Classes for Device Types:
+    - Abstract classes (sensors, Modules, Wire, Other) represent generic device types and implement the Device interface.
+```abstract class sensors implements Device {
+    public abstract String name();
+    public abstract float price();
+}
+
+abstract class Modules implements Device {
+    public abstract String name();
+    public abstract float price();
+}
+
+abstract class Wire implements Device {
+    public abstract String name();
+    public abstract float price();
+}
+
+abstract class Other implements Device {
+    public abstract String name();
+    public abstract float price();
+}
+```
+
+3. Concrete Device Classes:
+    - Concrete classes for specific devices (e.g., temp_sensor, ir_sensor, Uno, Nano) extend their respective abstract classes and provide specific implementations for the name and price methods.
+```
+class temp_sensor extends sensors {
+    public String name() {
+        return "Temperature Sensor";
+    }
+
+    public float price() {
+        return 50f;
+    }
+}
+
+class ir_sensor extends sensors {
+    public String name() {
+        return "Infrared Sensor";
+    }
+
+    public float price() {
+        return 65f;
+    }
+}
+
+// Other device classes follow the same pattern
+```
+
+4. Kit Class:
+    - The Kit class is used to manage a collection of devices. It provides methods to add devices, display the devices, and calculate the total cost of the kit.
+```class kit {
+    ArrayList<Device> items = new ArrayList<Device>();
+
+    void addDevice(Device itm) {
+        items.add(itm);
+    }
+
+    float getCost() {
+        float cost = 0;
+        for (Device itm : items) {
+            cost += itm.price();
+        }
+        return cost;
+    }
+
+    void showDevices() {
+        for (Device itm : items) {
+            System.out.println(itm.name());
+        }
+    }
+}
+```
+
+5. Client Code:
+    - The client class demonstrates how to create various device objects, add them to a kit, display the devices, and calculate the total cost.
+```
+public class client {
+    public static void main(String[] args) {
+        kit new_kit = new kit();
+
+        Device esp8266 = new esp8266();
+        Device m2m = new m2m();
+        Device f2m = new f2m();
+        Device t_sensor = new temp_sensor();
+        Device ir_sensor = new ir_sensor();
+        Device dht_sensor = new dht_sensor();
+        Device breadboard = new bb();
+        Device btn = new btn();
+        Device led = new led();
+        Device resistor = new resistor();
+
+        new_kit.addDevice(esp8266);
+        new_kit.addDevice(m2m);
+        new_kit.addDevice(f2m);
+        new_kit.addDevice(t_sensor);
+        new_kit.addDevice(dht_sensor);
+        new_kit.addDevice(ir_sensor);
+        new_kit.addDevice(breadboard);
+        new_kit.addDevice(btn);
+        new_kit.addDevice(led);
+        new_kit.addDevice(resistor);
+
+        System.out.println("Devices in the Kit are: ");
+        new_kit.showDevices();
+
+        float cost = new_kit.getCost();
+        System.out.println("\nTotal cost of the kit is : " + cost);
+    }
+}
+```
+## UML Diagram
+![Composite UML](https://lh3.googleusercontent.com/u/0/drive-viewer/AKGpihYqD83yIwjlZyvuD5G8TTVntOESuSY5HItqigJNNwY40TnFW-LM3WbDY4NrTINdqCUIlgGKrpR0M-zDhqZxu2h4Kw9Jh1V9hbY=w1920-h919-rw-v1)
+
+## Summary
+This project provides a structured approach to managing a collection of electronic components in a DIY electronics kit. The use of interfaces and abstract classes allows for flexibility and easy extension of new device types. The Kit class serves as a container for the devices and provides methods to manage them effectively. By running the client code, users can create a kit, add various devices, display the devices, and calculate the total cost.
+
+[Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Decorator.java)
+
+
 # Decorator
 ## Description
 The Decorator Design Pattern is used to extend the functionalities of objects in a flexible and reusable way. It allows behavior to be added to individual objects, either statically or dynamically, without affecting the behavior of other objects from the same class.
