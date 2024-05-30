@@ -1087,3 +1087,192 @@ class client {
 The Facade Design Pattern simplifies interactions with complex subsystems by providing a unified interface. In this project, the TexttoImageConversion class acts as a facade, managing the entire text to image conversion process. This approach hides the complexities of the individual steps and provides a simple interface for the client to use. The project demonstrates how to use the Facade pattern to encapsulate the functionality of multiple components into a single class, making the system easier to use and maintain.
 
 [Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Facade.java)
+
+
+# Factory
+## Description
+The Factory Design Pattern is used to create objects without specifying the exact class of object that will be created. It provides a way to encapsulate the instantiation logic and enables the creation of different types of objects based on input parameters. In this project, we use the Factory pattern to generate specifications of different laptop models.
+
+## Problem
+When a client needs to create objects of different types based on input, directly instantiating these objects using new can lead to code that is hard to manage and extend. The Factory Design Pattern addresses this issue by encapsulating the object creation logic, making the code more maintainable and scalable.
+
+## Solution
+1. Define the Laptop Interface:
+    - The Laptop interface defines the method for displaying laptop specifications.
+```
+interface Laptop {
+    void specs();
+}
+```
+
+2. Concrete Classes for Each Laptop Model:
+    - Concrete classes implement the Laptop interface and provide specific implementations for displaying the specifications of different laptop models.
+```
+class HP implements Laptop {
+    public void specs() {
+        System.out.println("Name: Victus 15");
+        System.out.println("Screen Resolution: 920 x 1080 pixels");
+        System.out.println("Processor: AMD Ryzen 5 7535HS");
+        System.out.println("RAM Size: 32 GB ");
+        System.out.println("Hard Drive Size: 1 TB");
+        System.out.println("Graphics Coprocessor: GeForce RTX 2050 4GB GDDR6 Graphic");
+        System.out.println("Price: Rs.1,07,770");
+    }
+}
+
+class Asus implements Laptop {
+    public void specs() {
+        System.out.println("Name: ROG Zephyrus M16");
+        System.out.println("Screen Resolution: 2560 x 1600 pixels");
+        System.out.println("Processor: Intel Core I9 12900H");
+        System.out.println("RAM Size: 8 GB ");
+        System.out.println("Hard Drive Size: 1 TB");
+        System.out.println("Graphics Coprocessor: NVIDIA GeForce RTX 3070 Ti");
+        System.out.println("Price: Rs.1,69,990");
+    }
+}
+
+class Dell implements Laptop {
+    public void specs() {
+        System.out.println("Name: Dell G15-5525");
+        System.out.println("Screen Resolution: 1920 x 1080 pixels");
+        System.out.println("Processor: AMD Ryzen 7-6800H");
+        System.out.println("RAM Size: 16 GB ");
+        System.out.println("Hard Drive Size: 512 GB");
+        System.out.println("Graphics Coprocessor: NVIDIA GeForce RTX 3060");
+        System.out.println("Price: Rs.93,831");
+    }
+}
+
+class Lenovo implements Laptop {
+    public void specs() {
+        System.out.println("Name: Lenovo Legion 5");
+        System.out.println("Screen Resolution: 2560X1440 Pixels");
+        System.out.println("Processor: AMD Ryzen 7 5800H");
+        System.out.println("RAM Size: 16 GB ");
+        System.out.println("Hard Drive Size: 512 GB");
+        System.out.println("Graphics Coprocessor: NVIDIA GeForce RTX 3060");
+        System.out.println("Price: Rs.1,18,900");
+    }
+}
+```
+
+3. Factory Class:
+    - The Factory class contains the logic to create and return instances of different laptop models based on the input parameter.
+```
+class LaptopFactory {
+    public Laptop getLaptop(int x) {
+        switch (x) {
+            case 1:
+                return new HP();
+            case 2:
+                return new Asus();
+            case 3:
+                return new Dell();
+            case 4:
+                return new Lenovo();
+            default:
+                return null;
+        }
+    }
+}
+```
+
+4. Client Code:
+    - The client code prompts the user to select a laptop model and uses the factory to create and display the specifications of the selected model.
+```
+class Client {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Which Laptop do you want to buy?: ");
+        System.out.println("1. HP\n2. Asus\n3. Dell\n4. Lenovo");
+        int x = sc.nextInt();
+
+        LaptopFactory factory = new LaptopFactory();
+        Laptop laptop = factory.getLaptop(x);
+        if (laptop != null) {
+            laptop.specs();
+        } else {
+            System.out.println("Invalid selection");
+        }
+        sc.close();
+    }
+}
+```
+
+## Explanation of the Code
+1. Laptop Interface:
+    - The Laptop interface defines a method specs that will be implemented by all concrete laptop classes.
+```
+interface Laptop {
+    void specs();
+}
+```
+
+2. Concrete Classes for Each Laptop Model:
+    - Classes (HP, Asus, Dell, Lenovo) implement the Laptop interface and provide specific details for each laptop model.
+```
+class HP implements Laptop {
+    public void specs() {
+        // Specifications of HP laptop
+    }
+}
+
+class Asus implements Laptop {
+    public void specs() {
+        // Specifications of Asus laptop
+    }
+}
+// Other laptop classes follow the same pattern
+```
+
+3. LaptopFactory Class:
+    - The factory class has a method getLaptop that takes an integer as input and returns an instance of the corresponding laptop model.
+```
+class LaptopFactory {
+    public Laptop getLaptop(int x) {
+        switch (x) {
+            case 1:
+                return new HP();
+            case 2:
+                return new Asus();
+            case 3:
+                return new Dell();
+            case 4:
+                return new Lenovo();
+            default:
+                return null;
+        }
+    }
+}
+```
+
+4. Client Code:
+    - The client class prompts the user for input, uses the factory to create the appropriate laptop object, and displays its specifications.
+```
+class Client {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Which Laptop do you want to buy?: ");
+        System.out.println("1. HP\n2. Asus\n3. Dell\n4. Lenovo");
+        int x = sc.nextInt();
+
+        LaptopFactory factory = new LaptopFactory();
+        Laptop laptop = factory.getLaptop(x);
+        if (laptop != null) {
+            laptop.specs();
+        } else {
+            System.out.println("Invalid selection");
+        }
+        sc.close();
+    }
+}
+```
+
+## UML
+![Factory UML](https://lh3.googleusercontent.com/u/0/drive-viewer/AKGpihbptvNTWbh4DR9tPz2oJJCGLMf-M67n0ajomV9uAS-wfhphDz_LZ8bmu1dx60Ibsb_T2QmkuYMxmjXG-q2V9pfojLAVrFzCCg8=w1920-h919-rw-v1)
+
+## Summary
+The Factory Design Pattern encapsulates the creation logic of objects, making the code easier to manage and extend. In this example, the LaptopFactory class provides a simple interface for creating different types of laptop objects based on user input. This approach hides the instantiation logic from the client, ensuring that the client code remains clean and easy to understand. The Factory pattern is particularly useful when the creation process is complex or when the exact types of objects to be created are determined at runtime.
+
+[Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Facade.java)
