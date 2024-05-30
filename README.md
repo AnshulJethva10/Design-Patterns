@@ -5,7 +5,7 @@ Welcome to the Design Patterns repository. This repository contains implementati
 3. [Builder](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#builder)
 4. [Composite](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#composite)
 5. [Decorator](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#decorator)
-6. Facade
+6. [Facade](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#facade)
 7. Factory
 8. Flyweight
 9. Iterator
@@ -1086,4 +1086,4 @@ class client {
 ## Summary
 The Facade Design Pattern simplifies interactions with complex subsystems by providing a unified interface. In this project, the TexttoImageConversion class acts as a facade, managing the entire text to image conversion process. This approach hides the complexities of the individual steps and provides a simple interface for the client to use. The project demonstrates how to use the Facade pattern to encapsulate the functionality of multiple components into a single class, making the system easier to use and maintain.
 
-[Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Decorator.java)
+[Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Facade.java)
