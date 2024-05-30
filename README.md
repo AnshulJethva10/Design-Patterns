@@ -898,3 +898,192 @@ class client {
 The Decorator Design Pattern is a structural pattern that allows behavior to be added to individual objects dynamically. In this example, we demonstrated how to use the decorator pattern to add decoration functionality to Truck and Car objects without modifying their class definitions. The pattern provides a flexible alternative to subclassing for extending functionality.
 
 [Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Decorator.java)
+
+
+# Facade
+## Description
+The Facade Design Pattern provides a simplified interface to a complex subsystem. In this project, we use the Facade pattern to convert text into an image by encapsulating the entire process within a single class that interacts with various components responsible for different stages of the conversion.
+
+## Problem
+Converting text to an image involves multiple steps and interactions between various components. Managing these interactions directly can be complex and error-prone. The Facade Design Pattern simplifies this by providing a unified interface that makes the subsystem easier to use.
+
+## Solution
+1. Define the LLM Interface:
+    - The LLM interface defines the structure for all components involved in the text to image conversion process.
+```
+interface LLM {
+    public void identify();
+}
+```
+
+2. Concrete Classes for Each Stage:
+    - Concrete classes for each stage of the conversion process, implementing the LLM interface.
+```
+class Layout_Planning implements LLM {
+    public void drawplan() {
+        System.out.println("Creating layout...");
+    }
+    public void identify() {
+        System.out.println("This is Layout Planning Section");
+    }
+}
+
+class Tokenization implements LLM {
+    public void generatetoken() {
+        System.out.println("Converting text to tokens...");
+    }
+    public void identify() {
+        System.out.println("This is Tokenization Section");
+    }
+}
+
+class Embedding implements LLM {
+    public void convertingtokens() {
+        System.out.println("Tokens are being converted into numerical representation...");
+    }
+    public void identify() {
+        System.out.println("This is Embedding Section");
+    }
+}
+
+class Contextualization implements LLM {
+    public void analyzing() {
+        System.out.println("Model is analyzing embedding...");
+    }
+    public void identify() {
+        System.out.println("This is Contextualization Section");
+    }
+}
+
+class Image_Generation implements LLM {
+    public void generatingimage() {
+        System.out.println("Converting the contextualized embeddings into a grid of pixels, applying colors, shapes...");
+    }
+    public void identify() {
+        System.out.println("This is Image Generation Section");
+    }
+}
+
+class Save implements LLM {
+    public void savingfile() {
+        System.out.println("Saving the generated image...");
+    }
+    public void identify() {
+        System.out.println("This is Save Section");
+    }
+}
+```
+
+3. TexttoImageConversion Class (Facade):
+    - This class provides a simplified interface to the entire text to image conversion process by sequentially invoking methods from each stage.
+```
+class TexttoImageConversion {
+    public String ImageGenerator(String text) {
+        Tokenization t1 = new Tokenization();
+        t1.generatetoken();
+        Embedding e1 = new Embedding();
+        e1.convertingtokens();
+        Contextualization c1 = new Contextualization();
+        c1.analyzing();
+        Image_Generation i1 = new Image_Generation();
+        i1.generatingimage();
+        Save s1 = new Save();
+        s1.savingfile();
+        System.out.println("Text converted to Image successfully.");
+        return text + ".png";
+    }  
+}
+```
+
+4. Client Code:
+    - The client code takes user input and initiates the text to image conversion process using the Facade class.
+```
+class client {
+    public static void main(String[] args) {
+        System.out.println("Enter the Text that you want to convert to image: ");
+        Scanner sc = new Scanner(System.in);
+        String text = sc.nextLine();
+        System.out.println("Creating Image of '" + text + "'...");
+        TexttoImageConversion converter = new TexttoImageConversion();
+        converter.ImageGenerator(text);
+        sc.close();
+    }
+}
+```
+
+## Explanation of the Code
+1. LLM Interface:
+    - The LLM interface defines a method identify for all stages of the conversion process.
+```
+interface LLM {
+    public void identify();
+}
+```
+
+2. Concrete Classes for Each Stage:
+    - Classes (Layout_Planning, Tokenization, Embedding, Contextualization, Image_Generation, Save) implement the LLM interface and provide specific implementations for their respective stages.
+```
+class Layout_Planning implements LLM {
+    public void drawplan() {
+        System.out.println("Creating layout...");
+    }
+    public void identify() {
+        System.out.println("This is Layout Planning Section");
+    }
+}
+
+class Tokenization implements LLM {
+    public void generatetoken() {
+        System.out.println("Converting text to tokens...");
+    }
+    public void identify() {
+        System.out.println("This is Tokenization Section");
+    }
+
+// Other stages follow the same pattern
+```
+
+3. TexttoImageConversion Class (Facade):
+    - This class manages the entire text to image conversion process by calling methods from each stage in sequence.
+```
+class TexttoImageConversion {
+    public String ImageGenerator(String text) {
+        Tokenization t1 = new Tokenization();
+        t1.generatetoken();
+        Embedding e1 = new Embedding();
+        e1.convertingtokens();
+        Contextualization c1 = new Contextualization();
+        c1.analyzing();
+        Image_Generation i1 = new Image_Generation();
+        i1.generatingimage();
+        Save s1 = new Save();
+        s1.savingfile();
+        System.out.println("Text converted to Image successfully.");
+        return text + ".png";
+    }  
+}
+```
+
+4. Client Code:
+    - The client class takes input from the user, creates an instance of TexttoImageConversion, and initiates the conversion process.
+```
+class client {
+    public static void main(String[] args) {
+        System.out.println("Enter the Text that you want to convert to image: ");
+        Scanner sc = new Scanner(System.in);
+        String text = sc.nextLine();
+        System.out.println("Creating Image of '" + text + "'...");
+        TexttoImageConversion converter = new TexttoImageConversion();
+        converter.ImageGenerator(text);
+        sc.close();
+    }
+}
+```
+
+## UML
+![Facade UML](https://lh3.googleusercontent.com/u/0/drive-viewer/AKGpihbvP86-6_1niBM4J-bMz8Wn0_emCz_OGmo9F4-hRAlzzw1bAnOfbzx19C1xs5DP1PW6v2LEwPDO-8zZWyu9e-8lYC6XYexu6So=w1920-h919-rw-v1)
+
+## Summary
+The Facade Design Pattern simplifies interactions with complex subsystems by providing a unified interface. In this project, the TexttoImageConversion class acts as a facade, managing the entire text to image conversion process. This approach hides the complexities of the individual steps and provides a simple interface for the client to use. The project demonstrates how to use the Facade pattern to encapsulate the functionality of multiple components into a single class, making the system easier to use and maintain.
+
+[Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Decorator.java)
