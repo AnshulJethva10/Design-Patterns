@@ -6,7 +6,7 @@ Welcome to the Design Patterns repository. This repository contains implementati
 4. [Composite](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#composite)
 5. [Decorator](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#decorator)
 6. [Facade](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#facade)
-7. Factory
+7. [Factory](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#factory)
 8. Flyweight
 9. Iterator
 10. MVC
@@ -1275,4 +1275,4 @@ class Client {
 ## Summary
 The Factory Design Pattern encapsulates the creation logic of objects, making the code easier to manage and extend. In this example, the LaptopFactory class provides a simple interface for creating different types of laptop objects based on user input. This approach hides the instantiation logic from the client, ensuring that the client code remains clean and easy to understand. The Factory pattern is particularly useful when the creation process is complex or when the exact types of objects to be created are determined at runtime.
 
-[Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Facade.java)
+[Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Factory.java)
