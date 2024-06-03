@@ -1476,4 +1476,4 @@ public class Client {
 ## Summary
 The Flyweight Design Pattern is a structural pattern that reduces memory usage by sharing as much data as possible with similar objects. In this example, we demonstrated how to use the Flyweight pattern to efficiently manage and display characters in a text editor. The pattern helps in minimizing memory consumption and improving performance, especially when dealing with a large number of similar objects.
 
-[Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Factory.java)
+[Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Flyweight.java)
