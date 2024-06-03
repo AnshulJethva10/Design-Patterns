@@ -7,7 +7,7 @@ Welcome to the Design Patterns repository. This repository contains implementati
 5. [Decorator](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#decorator)
 6. [Facade](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#facade)
 7. [Factory](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#factory)
-8. Flyweight
+8. [Flyweight](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#flyweight)
 9. Iterator
 10. MVC
 11. Memento
@@ -1287,7 +1287,7 @@ In scenarios where a large number of similar objects are created, memory usage c
 
 ## Solution
 1. Define the Character Interface:
-  - The Character interface defines the methods that concrete characters will implement.
+    - The Character interface defines the methods that concrete characters will implement.
 ```
 interface Character {
     void display();
