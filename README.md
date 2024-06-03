@@ -1278,7 +1278,7 @@ The Factory Design Pattern encapsulates the creation logic of objects, making th
 [Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Factory.java)
 
 
-# Flyweight Design Pattern
+# Flyweight
 ## Description
 The Flyweight Design Pattern is used to minimize memory usage and improve performance by sharing as much data as possible with similar objects. It is particularly useful when a large number of similar objects are created, and their storage cost is high. This pattern provides a way to use objects in a more efficient manner.
 
