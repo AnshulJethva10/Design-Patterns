@@ -1276,3 +1276,204 @@ class Client {
 The Factory Design Pattern encapsulates the creation logic of objects, making the code easier to manage and extend. In this example, the LaptopFactory class provides a simple interface for creating different types of laptop objects based on user input. This approach hides the instantiation logic from the client, ensuring that the client code remains clean and easy to understand. The Factory pattern is particularly useful when the creation process is complex or when the exact types of objects to be created are determined at runtime.
 
 [Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Factory.java)
+
+
+# Flyweight Design Pattern
+## Description
+The Flyweight Design Pattern is used to minimize memory usage and improve performance by sharing as much data as possible with similar objects. It is particularly useful when a large number of similar objects are created, and their storage cost is high. This pattern provides a way to use objects in a more efficient manner.
+
+## Problem
+In scenarios where a large number of similar objects are created, memory usage can become a concern. Creating multiple instances of similar objects wastes memory and can degrade performance. The Flyweight Design Pattern helps reduce memory consumption by sharing common parts of the object state.
+
+## Solution
+1. Define the Character Interface:
+  - The Character interface defines the methods that concrete characters will implement.
+```
+interface Character {
+    void display();
+    int getcost();
+}
+```
+
+2. Concrete Character Class:
+    - The ConcreteCharacter class implements the Character interface and represents a character with a specific symbol and cost.
+```
+class ConcreteCharacter implements Character {
+    char symbol;
+    int cost;
+
+    public ConcreteCharacter(char symbol, int cost) {
+        this.symbol = symbol;
+        this.cost = cost;
+    }
+
+    public void display() {
+        System.out.print(symbol);
+    }
+
+    public int getcost() {
+        return cost; 
+    }
+}
+```
+
+3. Character Factory Class:
+    - The CharacterFactory class manages the creation and reuse of ConcreteCharacter instances. It ensures that new characters are only created when they don't already exist.
+```
+class CharacterFactory {
+    private List<ConcreteCharacter> characters = new ArrayList<>();
+
+    public Character getCharacter(char symbol, int cost) {
+        ConcreteCharacter character = getExistingCharacter(symbol);
+
+        if (character == null) {
+            character = new ConcreteCharacter(symbol, cost);
+            characters.add(character);
+        }
+
+        return character;
+    }
+
+    private ConcreteCharacter getExistingCharacter(char symbol) {
+        for (ConcreteCharacter character : characters) {
+            if (character.symbol == symbol) {
+                return character;
+            }
+        }
+        return null;
+    }
+}
+```
+
+4. Client Code:
+    - The client class demonstrates the use of the Flyweight pattern to print characters and calculate the total cost.
+```
+public class Client {
+    static int fontcost = 5;
+    static int sizecost = 4;
+    int totalcost = 0;
+    private CharacterFactory characterFactory = new CharacterFactory();
+
+    public void printCharacters(String text) {
+        for (char c : text.toCharArray()) {
+            Character character = characterFactory.getCharacter(c, 1);
+            character.display();
+            totalcost += character.getcost();
+        }
+        totalcost += fontcost + sizecost;
+    }
+
+    public int getTotalcost() {
+        return totalcost;
+    }
+
+    public static void main(String[] args) {
+        Client editor = new Client();
+        editor.printCharacters("Hello, World!");
+        System.out.println("\nTotal Cost with Flyweight Design Pattern: " + editor.getTotalcost());
+
+        int totalcostwithoutflyweight = "Hello, World!".length() * (sizecost + fontcost);
+        System.out.println("Total Cost without Flyweight Design Pattern: " + totalcostwithoutflyweight);
+    }
+}
+```
+
+## Explanation of the Code
+1. Character Interface:
+    - The Character interface defines two methods, display and getcost, which are implemented by concrete character classes.
+```
+interface Character {
+    void display();
+    int getcost();
+}
+```
+
+2. ConcreteCharacter Class:
+    - The ConcreteCharacter class represents a character with a symbol and cost. It implements the Character interface.
+```
+class ConcreteCharacter implements Character {
+    char symbol;
+    int cost;
+
+    public ConcreteCharacter(char symbol, int cost) {
+        this.symbol = symbol;
+        this.cost = cost;
+    }
+
+    public void display() {
+        System.out.print(symbol);
+    }
+
+    public int getcost() {
+        return cost; 
+    }
+}
+```
+
+3. CharacterFactory Class:
+    - The CharacterFactory class is responsible for creating and managing ConcreteCharacter instances. It ensures that characters are reused when possible to save memory.
+```
+class CharacterFactory {
+    private List<ConcreteCharacter> characters = new ArrayList<>();
+
+    public Character getCharacter(char symbol, int cost) {
+        ConcreteCharacter character = getExistingCharacter(symbol);
+
+        if (character == null) {
+            character = new ConcreteCharacter(symbol, cost);
+            characters.add(character);
+        }
+
+        return character;
+    }
+
+    private ConcreteCharacter getExistingCharacter(char symbol) {
+        for (ConcreteCharacter character : characters) {
+            if (character.symbol == symbol) {
+                return character;
+            }
+        }
+        return null;
+    }
+}
+```
+4. Client Class:
+    - The client class demonstrates how to use the Flyweight pattern to print characters and calculate the total cost with and without the Flyweight pattern.
+```
+public class Client {
+    static int fontcost = 5;
+    static int sizecost = 4;
+    int totalcost = 0;
+    private CharacterFactory characterFactory = new CharacterFactory();
+
+    public void printCharacters(String text) {
+        for (char c : text.toCharArray()) {
+            Character character = characterFactory.getCharacter(c, 1);
+            character.display();
+            totalcost += character.getcost();
+        }
+        totalcost += fontcost + sizecost;
+    }
+
+    public int getTotalcost() {
+        return totalcost;
+    }
+
+    public static void main(String[] args) {
+        Client editor = new Client();
+        editor.printCharacters("Hello, World!");
+        System.out.println("\nTotal Cost with Flyweight Design Pattern: " + editor.getTotalcost());
+
+        int totalcostwithoutflyweight = "Hello, World!".length() * (sizecost + fontcost);
+        System.out.println("Total Cost without Flyweight Design Pattern: " + totalcostwithoutflyweight);
+    }
+}
+```
+
+## UML
+![Flyweight UML](https://lh3.googleusercontent.com/u/0/drive-viewer/AKGpihYhuitHRIE4DfiKOzAIKqprx9YxIxkGkFQojTtIbNzu140cwg9qmEDd9G9Cmua5JX1VeELCoz8LbfgLaOa4ueQ_rXlmVureNno=w1920-h919)
+
+## Summary
+The Flyweight Design Pattern is a structural pattern that reduces memory usage by sharing as much data as possible with similar objects. In this example, we demonstrated how to use the Flyweight pattern to efficiently manage and display characters in a text editor. The pattern helps in minimizing memory consumption and improving performance, especially when dealing with a large number of similar objects.
+
+[Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Factory.java)
