@@ -1823,3 +1823,101 @@ public class Client {
 The Iterator Design Pattern is a behavioral pattern that provides a standardized way to traverse elements in a collection without exposing the underlying representation. In this example, we demonstrated how to use the Iterator pattern to efficiently iterate through a list of students, sorted by different attributes. This pattern helps in achieving a clean separation of concerns and simplifies the traversal logic.
 
 [Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Iterator.java)
+
+
+# Model-View-Controller (MVC)
+## Description
+The Model-View-Controller (MVC) Design Pattern is used to separate the application's concerns. This separation helps manage complexity and promotes organized code. The MVC pattern divides an application into three interconnected components: Model, View, and Controller.
+
+## Problem
+In scenarios where the user interface and business logic are tightly coupled, the code becomes difficult to manage, extend, and test. Any change in the user interface might require changes in the business logic and vice versa. The MVC Design Pattern addresses this issue by separating the application into three components, each handling a specific aspect of the application's functionality.
+
+## Solution
+1. Define the FlightModel Class:
+    - The FlightModel class represents the data and business logic of a flight.
+    - The FlightModel class represents the data and business logic for a flight. It includes attributes for the flight name, model, and number of seats. The class also provides setter methods to update the flight's name and model.
+```
+class FlightModel {
+    String Name, Model;
+    int Seats;
+
+    FlightModel(String Name, String Model, int Seats) {
+        this.Name = Name;
+        this.Model = Model;
+        this.Seats = Seats;
+    }
+
+    void setName(String name) {
+        this.Name = name;
+    }
+
+    void setModel(String model) {
+        this.Model = model;
+    }
+}
+```
+
+2. Define the FlightView Class:
+    - The FlightView class handles the display of flight information.
+    - The FlightView class handles the presentation of the flight information. It includes a method to print the details of a flight.
+```
+class FlightView {
+    void PrintFlightDetails(FlightModel fm) {
+        System.out.println("\nFlight Name: " + fm.Name);
+        System.out.println("Flight Model: " + fm.Model);
+        System.out.println("Flight Seats: " + fm.Seats);
+    }
+}
+```
+
+3. Define the FlightController Class:
+    - The FlightController class acts as an intermediary between the FlightModel and FlightView. It handles the user input and updates the model.
+    - The FlightController class serves as an intermediary between the FlightModel and FlightView. It provides methods to update the model's data and refresh the view.
+```
+class FlightController {
+    FlightModel fm;
+    FlightView fv;
+
+    FlightController(FlightModel fm, FlightView fv) {
+        this.fm = fm;
+        this.fv = fv;
+    }
+
+    void setName(String name) {
+        fm.setName(name);
+    }
+
+    void setModel(String model) {
+        fm.setModel(model);
+    }
+
+    void updateView() {
+        fv.PrintFlightDetails(fm);
+    }
+}
+```
+
+4. Client Code:
+    - The client class demonstrates the use of the MVC pattern by creating instances of the FlightModel, FlightView, and FlightController classes and updating the flight information.
+    - The client class demonstrates how to use the MVC components. It creates instances of FlightModel, FlightView, and FlightController, updates the model through the controller, and displays the updated flight information.
+```
+public class Client {
+    public static void main(String[] args) {
+        FlightModel fm = new FlightModel("Flight 1", "Model 1", 100);
+        FlightView fv = new FlightView();
+        FlightController fc = new FlightController(fm, fv);
+        fc.updateView();
+        fc.setName("Flight 2");
+        fc.setModel("Model 2");
+        fc.updateView();
+    }
+}
+```
+
+## UML
+![MVC UML](https://lh3.googleusercontent.com/u/0/drive-viewer/AKGpihYnRx4SJo1FqVsd_C-2ngJAeJf2nZLWnNUNQSvvCeM6Cej4WdTIrNS5OaYU8tGCfYIR55jEb7U_0wBhwcPoy4JAkgZTu2Wj2A=w1920-h919)
+
+## Summary
+The Model-View-Controller (MVC) Design Pattern is a structural pattern that separates the application into three interconnected components: Model, View, and Controller. This separation helps manage complexity, promotes organized code, and makes the application easier to maintain and extend. In this example, we demonstrated how to use the MVC pattern to manage and display flight information efficiently. The pattern helps in achieving a clear separation of concerns, leading to a more modular and scalable application.
+
+[Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Iterator.java)
