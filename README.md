@@ -9,7 +9,7 @@ Welcome to the Design Patterns repository. This repository contains implementati
 7. [Factory](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#factory)
 8. [Flyweight](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#flyweight)
 9. [Iterator](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#iterator)
-10. [MVC](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#mvc)
+10. [MVC](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#model-view-controller-mvc)
 11. Memento
 12. Observer
 13. Prototype
