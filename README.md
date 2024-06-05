@@ -1477,3 +1477,349 @@ public class Client {
 The Flyweight Design Pattern is a structural pattern that reduces memory usage by sharing as much data as possible with similar objects. In this example, we demonstrated how to use the Flyweight pattern to efficiently manage and display characters in a text editor. The pattern helps in minimizing memory consumption and improving performance, especially when dealing with a large number of similar objects.
 
 [Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Flyweight.java)
+
+
+# Iterator Design Pattern
+## Description
+The Iterator Design Pattern provides a way to access the elements of a collection sequentially without exposing the underlying representation. This pattern is particularly useful for traversing collections like lists or arrays in a uniform way.
+
+## Problem
+In scenarios where collections need to be traversed, it is important to provide a standardized way to iterate through the elements. Without a common iteration interface, each collection would require a different traversal mechanism, leading to inconsistent and error-prone code. The Iterator Design Pattern addresses this issue by defining a standard interface for traversal.
+
+## Solution
+1. Define the Students Class:
+    - The Students class represents a student with attributes like name, branch, age, and roll number.
+```
+class Students {
+    String name, branch;
+    int age, rollno;
+
+    Students(String name, String branch, int age, int rollno) {
+        this.name = name;
+        this.branch = branch;
+        this.age = age;
+        this.rollno = rollno;
+    }
+
+    void PrintDetails(Students s1) {
+        System.out.println("Name: " + s1.name + "\t" +
+                        "Roll Number: " + s1.rollno + "\t" + 
+                        "Branch: " + s1.branch + "\t" + 
+                        "Age: " + s1.age);
+    }
+
+    String getName() {
+        return name;
+    }
+
+    int getRoll() {
+        return rollno;
+    }
+
+    String getBranch() {
+        return branch;
+    }
+
+    int getAge() {
+        return age;
+    }
+}
+```
+
+2. Define the StudentIterator Class:
+    - The StudentIterator class implements the Iterator interface for traversing the Students collection.
+```
+class StudentIterator implements Iterator<Students> {
+    private ArrayList<Students> studentList;
+    private int index;
+
+    public StudentIterator(ArrayList<Students> studentList) {
+        this.studentList = studentList;
+        this.index = 0;
+    }
+
+    @Override
+    public boolean hasNext() {
+        return index < studentList.size();
+    }
+
+    @Override
+    public Students next() {
+        return studentList.get(index++);
+    }
+}
+```
+
+3. Define Comparator Classes for Sorting:
+    - The comparator classes (StudentAgeComparator, StudentRollNoComparator, StudentNameComparator, and StudentBranchComparator) are used to sort the student list based on different attributes.
+```
+class StudentAgeComparator implements Comparator<Students> {
+    @Override
+    public int compare(Students s1, Students s2) {
+        return s1.getAge() - s2.getAge();
+    }
+}
+
+class StudentRollNoComparator implements Comparator<Students> {
+    @Override
+    public int compare(Students s1, Students s2) {
+        return s1.getRoll() - s2.getRoll();
+    }
+}
+
+class StudentNameComparator implements Comparator<Students> {
+    @Override
+    public int compare(Students s1, Students s2) {
+        return s1.getName().compareTo(s2.getName());
+    }
+}
+
+class StudentBranchComparator implements Comparator<Students> {
+    @Override
+    public int compare(Students s1, Students s2) {
+        return s1.getBranch().compareTo(s2.getBranch());
+    }
+}
+```
+
+4. Define the Iterators Class:
+    - The Iterators class contains methods to iterate through the student list, sorted by different attributes.
+```
+class Iterators {
+    void IteratebyName(ArrayList<Students> studentList) {
+        Collections.sort(studentList, new StudentNameComparator());
+        System.out.println("Sorted by Name:");
+        StudentIterator iterator = new StudentIterator(studentList);
+        while (iterator.hasNext()) {
+            Students student = iterator.next();
+            student.PrintDetails(student);
+            System.out.println();
+        }
+    }
+
+    void IteratebyAge(ArrayList<Students> studentList) {
+        Collections.sort(studentList, new StudentAgeComparator());
+        System.out.println("Sorted by Age:");
+        StudentIterator iterator = new StudentIterator(studentList);
+        while (iterator.hasNext()) {
+            Students student = iterator.next();
+            student.PrintDetails(student);
+            System.out.println();
+        }
+    }
+
+    void IteratebyRoll(ArrayList<Students> studentList) {
+        Collections.sort(studentList, new StudentRollNoComparator());
+        System.out.println("Sorted by Roll Number:");
+        StudentIterator iterator = new StudentIterator(studentList);
+        while (iterator.hasNext()) {
+            Students student = iterator.next();
+            student.PrintDetails(student);
+            System.out.println();
+        }
+    }
+
+    void IteratebyBranch(ArrayList<Students> studentList) {
+        Collections.sort(studentList, new StudentBranchComparator());
+        System.out.println("Sorted by Branch:");
+        StudentIterator iterator = new StudentIterator(studentList);
+        while (iterator.hasNext()) {
+            Students student = iterator.next();
+            student.PrintDetails(student);
+            System.out.println();
+        }
+    }
+}
+```
+
+5. Client Code:
+    - The client class demonstrates the use of the Iterator pattern to iterate through a list of students sorted by different attributes.
+```
+public class Client {
+    public static void main(String[] args) {
+        ArrayList<Students> studentList = new ArrayList<>();
+        studentList.add(new Students("Alice", "Computer", 20, 103));
+        studentList.add(new Students("Bob", "Mechanical", 22, 101));
+        studentList.add(new Students("Charlie", "Aerospace", 21, 102));
+
+        Iterators i = new Iterators();
+        i.IteratebyName(studentList);
+        i.IteratebyAge(studentList);
+        i.IteratebyBranch(studentList);
+        i.IteratebyRoll(studentList);
+    }
+}
+```
+
+## Explanation of the Code
+1. Students Class:
+    - The Students class represents a student with attributes like name, branch, age, and roll number. It also includes methods to get these attributes and print the student's details.
+```
+class Students {
+    String name, branch;
+    int age, rollno;
+
+    Students(String name, String branch, int age, int rollno) {
+        this.name = name;
+        this.branch = branch;
+        this.age = age;
+        this.rollno = rollno;
+    }
+
+    void PrintDetails(Students s1) {
+        System.out.println("Name: " + s1.name + "\t" +
+                        "Roll Number: " + s1.rollno + "\t" + 
+                        "Branch: " + s1.branch + "\t" + 
+                        "Age: " + s1.age);
+    }
+
+    String getName() {
+        return name;
+    }
+
+    int getRoll() {
+        return rollno;
+    }
+
+    String getBranch() {
+        return branch;
+    }
+
+    int getAge() {
+        return age;
+    }
+}
+```
+
+2. StudentIterator Class:
+    - The StudentIterator class implements the Iterator interface to traverse the Students collection. It maintains an index to track the current position in the list.
+```
+class StudentIterator implements Iterator<Students> {
+    private ArrayList<Students> studentList;
+    private int index;
+
+    public StudentIterator(ArrayList<Students> studentList) {
+        this.studentList = studentList;
+        this.index = 0;
+    }
+
+    @Override
+    public boolean hasNext() {
+        return index < studentList.size();
+    }
+
+    @Override
+    public Students next() {
+        return studentList.get(index++);
+    }
+}
+```
+
+3. Comparator Classes:
+    - These classes (StudentAgeComparator, StudentRollNoComparator, StudentNameComparator, and StudentBranchComparator) implement the Comparator interface to sort the student list based on different attributes.
+```
+class StudentAgeComparator implements Comparator<Students> {
+    @Override
+    public int compare(Students s1, Students s2) {
+        return s1.getAge() - s2.getAge();
+    }
+}
+
+class StudentRollNoComparator implements Comparator<Students> {
+    @Override
+    public int compare(Students s1, Students s2) {
+        return s1.getRoll() - s2.getRoll();
+    }
+}
+
+class StudentNameComparator implements Comparator<Students> {
+    @Override
+    public int compare(Students s1, Students s2) {
+        return s1.getName().compareTo(s2.getName());
+    }
+}
+
+class StudentBranchComparator implements Comparator<Students> {
+    @Override
+    public int compare(Students s1, Students s2) {
+        return s1.getBranch().compareTo(s2.getBranch());
+    }
+}
+```
+
+3. Iterators Class:
+    - The Iterators class contains methods to iterate through the student list sorted by different attributes. Each method sorts the list using the appropriate comparator and then iterates through it using the StudentIterator.
+```
+class Iterators {
+    void IteratebyName(ArrayList<Students> studentList) {
+        Collections.sort(studentList, new StudentNameComparator());
+        System.out.println("Sorted by Name:");
+        StudentIterator iterator = new StudentIterator(studentList);
+        while (iterator.hasNext()) {
+            Students student = iterator.next();
+            student.PrintDetails(student);
+            System.out.println();
+        }
+    }
+
+    void IteratebyAge(ArrayList<Students> studentList) {
+        Collections.sort(studentList, new StudentAgeComparator());
+        System.out.println("Sorted by Age:");
+        StudentIterator iterator = new StudentIterator(studentList);
+        while (iterator.hasNext()) {
+            Students student = iterator.next();
+            student.PrintDetails(student);
+            System.out.println();
+        }
+    }
+
+    void IteratebyRoll(ArrayList<Students> studentList) {
+        Collections.sort(studentList, new StudentRollNoComparator());
+        System.out.println("Sorted by Roll Number:");
+        StudentIterator iterator = new StudentIterator(studentList);
+        while (iterator.hasNext()) {
+            Students student = iterator.next();
+            student.PrintDetails(student);
+            System.out.println();
+        }
+    }
+
+    void IteratebyBranch(ArrayList<Students> studentList) {
+        Collections.sort(studentList, new StudentBranchComparator());
+        System.out.println("Sorted by Branch:");
+        StudentIterator iterator = new StudentIterator(studentList);
+        while (iterator.hasNext()) {
+            Students student = iterator.next();
+            student.PrintDetails(student);
+            System.out.println();
+        }
+    }
+}
+```
+
+4. Client Code:
+    - The client class demonstrates how to use the Iterators class to iterate through a list of students sorted by different attributes. It creates a list of students, sorts and iterates through them using the different methods in the Iterators class.
+```
+public class Client {
+    public static void main(String[] args) {
+        ArrayList<Students> studentList = new ArrayList<>();
+        studentList.add(new Students("Alice", "Computer", 20, 103));
+        studentList.add(new Students("Bob", "Mechanical", 22, 101));
+        studentList.add(new Students("Charlie", "Aerospace", 21, 102));
+
+        Iterators i = new Iterators();
+        i.IteratebyName(studentList);
+        i.IteratebyAge(studentList);
+        i.IteratebyBranch(studentList);
+        i.IteratebyRoll(studentList);
+    }
+}
+```
+
+## UML Diagram
+![Iterator UML](https://lh3.googleusercontent.com/u/0/drive-viewer/AKGpihY6GyKArufMwAcp3z-TnCrfaHXpfv-3zXHvoE4xSVsLTyYVU4tBgkJ4TVMKLwTP3OopcHHvFxLYDY4dF9zobQEgM1w0qHFaUA=w1920-h919-rw-v1)
+
+## Summary
+The Iterator Design Pattern is a behavioral pattern that provides a standardized way to traverse elements in a collection without exposing the underlying representation. In this example, we demonstrated how to use the Iterator pattern to efficiently iterate through a list of students, sorted by different attributes. This pattern helps in achieving a clean separation of concerns and simplifies the traversal logic.
+
+[Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Flyweight.java)
