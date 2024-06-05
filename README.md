@@ -8,7 +8,7 @@ Welcome to the Design Patterns repository. This repository contains implementati
 6. [Facade](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#facade)
 7. [Factory](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#factory)
 8. [Flyweight](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#flyweight)
-9. Iterator
+9. [Iterator](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#iterator)
 10. MVC
 11. Memento
 12. Observer
@@ -1479,7 +1479,7 @@ The Flyweight Design Pattern is a structural pattern that reduces memory usage b
 [Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Flyweight.java)
 
 
-# Iterator Design Pattern
+# Iterator
 ## Description
 The Iterator Design Pattern provides a way to access the elements of a collection sequentially without exposing the underlying representation. This pattern is particularly useful for traversing collections like lists or arrays in a uniform way.
 
@@ -1822,4 +1822,4 @@ public class Client {
 ## Summary
 The Iterator Design Pattern is a behavioral pattern that provides a standardized way to traverse elements in a collection without exposing the underlying representation. In this example, we demonstrated how to use the Iterator pattern to efficiently iterate through a list of students, sorted by different attributes. This pattern helps in achieving a clean separation of concerns and simplifies the traversal logic.
 
-[Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Flyweight.java)
+[Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Iterator.java)
