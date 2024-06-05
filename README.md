@@ -9,7 +9,7 @@ Welcome to the Design Patterns repository. This repository contains implementati
 7. [Factory](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#factory)
 8. [Flyweight](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#flyweight)
 9. [Iterator](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#iterator)
-10. MVC
+10. [MVC](https://github.com/AnshulJethva10/Design-Patterns/blob/main/README.md#mvc)
 11. Memento
 12. Observer
 13. Prototype
@@ -1920,4 +1920,4 @@ public class Client {
 ## Summary
 The Model-View-Controller (MVC) Design Pattern is a structural pattern that separates the application into three interconnected components: Model, View, and Controller. This separation helps manage complexity, promotes organized code, and makes the application easier to maintain and extend. In this example, we demonstrated how to use the MVC pattern to manage and display flight information efficiently. The pattern helps in achieving a clear separation of concerns, leading to a more modular and scalable application.
 
-[Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/Iterator.java)
+[Link to the Complete Code](https://github.com/AnshulJethva10/Design-Patterns/blob/main/MVC.java)
